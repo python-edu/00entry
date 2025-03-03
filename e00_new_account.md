@@ -1,11 +1,37 @@
-# Windows setup
+# Contents
 
->1. Creating a new user account
->2. Account setup
+ - [Microsoft Teams](#Microsoft Teams)
+ - [git installation](#git installation)
+ - [New account](#New account)
+ - [Account setup](#Account setup)
+
+
+# Microsoft Teams
+
+Usually, each user of the system must install Microsft Teams individually. To avoid this situation, you can install a
+version available to each computer user:
+ >- in the browser, open this [link](https://learn.microsoft.com/en-us/microsoftteams/new-teams-bulk-install-client)
+ >- click on `Download the .exe installer` and download the file
+ >- open the PowerShell program as an administrator
+ >- go to the Downloads directory, e.g. if your username is `john`, type: `cd C:\Users\john\Downloads`
+ >- run the installer as shown in the image
+
+![teams](./imgs/wide_teams.png)
 
 
 
-## New user account
+# git installation
+
+From [git page](https://git-scm.com/):
+>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+Open [link](https://git-scm.com/downloads), download installer and install `git`.
+
+
+
+# New account
+
+To separate the software configuration and installation operations (for the security of the main system) a new user account will be created. In case of problems it can be easily deleted without damaging the system.
 
 >- press the `Windows` key and type settings on your keyboard
 
@@ -30,11 +56,16 @@
 
 ---
 
-## Account setup
+
+# Account setup
 Log in to the new account (in the example it is `python_course`) and:
- >- go back to settings
- >- go to the `System/For developers` tab
- >- activate the options shown in the pictures below:
+ 1. Go back to settings
+ 2. Go to the `System/For developers` tab and activate the options shown in the pictures below:
+ >- `Developer Mode On`
+ >- `File Explorer\Show file extension On`
+ >- `File Explorer\Show full path in title bar On`
+ >- `Terminal Windows Terminal`
+ >- `PowerShell\Change execution policy ... On`
 
 ![setup1](./imgs/developer1.jpg)
 ![setup1](./imgs/developer2.jpg)
