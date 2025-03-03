@@ -4,6 +4,7 @@
  - [Scoop instalation](#scoop-instalation)
  - [Micro instalation](#micro-instalation)
  - [fzf instalation](#fzf-instalation)
+ - [PowerShell setup](#powershell-setup)
  
 
 # General
@@ -33,6 +34,7 @@ From [Scoop](https://scoop.sh/#/):
 From [micro web](https://micro-editor.github.io/):
 >a modern and intuitive terminal-based text editor
 
+In the PowerShell terminal, type:
 ```
 scoop install micro
 ```
@@ -48,34 +50,47 @@ From [fzf github](https://github.com/junegunn/fzf):
 >- Available for MacOS, Linux, & Windows
 >- fzf is a general-purpose command-line fuzzy finder
 
+In the PowerShell terminal, type:
 ```
 scoop install fzf
 ```
 
 
-# Notepad++ editor configuration
 
-1. EDITOR variable
-Setting the EDITOR environment variable points to the default text editor. Thanks to this setting,
-calling the `ipython` magic function `%edit` (alias `%ed`) will run the indicated text etior.
+# PowerShell setup
 
-Windows:
- - open system settings
- - click the Advanced system settings link
- - click `Environment Variables`, click `New`
- - in the `Variable name` box, enter: `EDITOR`
- - in the `Variable value` box, enter the path to the executable file: notepad.exe, e.g. `C:/Program Files/Notepad++/notepad++.exe` 
+## PROFILE
+
+`$PROFILE`: A PowerShell system variable that stores the path to the user's profile file. This is a script that is
+automatically executed when PowerShell starts. In the PowerShell terminal:
+
+1. `echo $PROFILE`: this will show you the location of the PowerShell configuration file eg.:
+`C:\Users\test1\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
+2. `dir Documents`: this will show if there is a folder `WindowsPowerShell` in the `Documents` directory:
+ - `mkdir .\Documents\WindowsPowerShell`: use this command to create directory `WindowsPowerShell` if it does not exist
+3. `micro $PROFILE`: editor will open/create the file for editing
+
+
+## EDITOR variable
+
+`$EDITOR`: An environment variable that indicates the default text editor used in the terminal. Many programs can use
+this variable, such as Git, VS Code, ipython, etc. In the `$PROFILE` file add the following entry:
+
+```
+$EDITOR = "micro"
+```
 
 
 On Linux:
  - edit your `~/.bashrc` (or `~./profile`) file
- - add line: `export EDITOR=notepad++`
+ - add line: `export EDITOR=micro`
 ---
 
+## Aliases
 
-# Settings
- - menu `Language` -> `Python`
- - menu `Preferences` -> `New Document` -> `Default Language` -> `Python`
- - menu `Preferences` -> `New Document` -> `Encoding` -> `UTF-8`
- - menu `Preferences` -> `Language` -> `Tab Settings` -> `Tab Size`: 4
- - menu `Preferences` -> `Language` -> `Tab Settings` -> `Replace by space`
+For frequently executed commands, you can define shortcuts, so-called aliases, which speed up work, e.g.:
+
+```micro $PROFILE
+Set-Alias mc micro
+```
+- this allows you to launch the micro editor by typing 2 characters `mc`.
