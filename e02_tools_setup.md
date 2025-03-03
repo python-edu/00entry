@@ -1,9 +1,9 @@
 # Contents
 
  - [General](#general)
- - [Scoop instalation](scoop-instalation)
- - [Micro instalation](micro-instalation)
- - [fzf instalation](fzf-instalation)
+ - [Scoop instalation](#scoop-instalation)
+ - [Micro instalation](#micro-instalation)
+ - [fzf instalation](#fzf-instalation)
  
 
 # General
@@ -48,7 +48,9 @@ From [fzf github](https://github.com/junegunn/fzf):
 >- Available for MacOS, Linux, & Windows
 >- fzf is a general-purpose command-line fuzzy finder
 
-```scoop install fzf```
+```
+scoop install fzf
+```
 
 
 # Notepad++ editor configuration
