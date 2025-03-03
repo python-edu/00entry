@@ -1,9 +1,9 @@
 # Contents
 
- - [Microsoft Teams](#Microsoft Teams)
- - [git installation](#git installation)
- - [New account](#New account)
- - [Account setup](#Account setup)
+ - [Microsoft Teams](#microsoft-teams)
+ - [git installation](#git-installation)
+ - [New account](#new-account)
+ - [Account setup](#account-setup)
 
 
 # Microsoft Teams
