@@ -22,10 +22,16 @@ version available to each computer user:
 
 # git installation
 
-From [git page](https://git-scm.com/):
+Currently, scientific work is based on teamwork, which causes:
+- multiple people operating on the same documents
+- splitting documents and merging them
+- working on multiple versions of documents
+
+For this purpose, the course will use an open source tool - `git`. From [git page](https://git-scm.com/):
 >Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Open [link](https://git-scm.com/downloads), download installer and install `git`.
+
 
 
 

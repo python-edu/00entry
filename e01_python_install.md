@@ -12,8 +12,6 @@ Preparing your computer for the lab requires installing:
   - atom [url](https://atom.io/)
   - spyder [url](https://www.spyder-ide.org/)
 
- 3. Optional (but recommended):
-  - git --fast-version-control [url](https://git-scm.com/)
 ---
 
 
