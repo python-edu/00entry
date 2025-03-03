@@ -21,8 +21,10 @@ From [Scoop](https://scoop.sh/#/):
  >- a command-line installer for Windows.
  >- Open a PowerShell terminal (version 5.1 or later) and from the PS C:\> prompt, run:
 
- ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
- Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression```
+ ```
+ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+ ```
 
 
 
@@ -31,7 +33,9 @@ From [Scoop](https://scoop.sh/#/):
 From [micro web](https://micro-editor.github.io/):
 >a modern and intuitive terminal-based text editor
 
-```scoop install micro```
+```
+scoop install micro
+```
 
 If you really don't want to learn micro you can use any other text editor e.g. [Nnotepad++](https://notepad-plus-plus.org/).
 
