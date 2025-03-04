@@ -21,6 +21,12 @@ Preparing your computer for the lab requires installing:
  1. Download the latest source [release](https://www.python.org/downloads/) or look for a specific release.
  2. Run the installation and follow the appearing tips.
  3. Select/mark:
-  - location: user's default folder
+  - location: user's default folder eg. `C:\Users\your-account\AppData\Local\Programs\Python`
   - check the box: `Add python.exe to PATH` (applies to the current user's variable)
+  - if the `Install for all users` option is available - uncheck it (installation only for the current account!)
+
+ 4. After installation:
+   - run PowerShell
+   - enter: `python -V / --version` to check if python is working
+   - enter: `python -m pip install -U pip` to update pip manager
 
