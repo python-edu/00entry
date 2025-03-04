@@ -59,6 +59,12 @@ scoop install fzf
 
 # PowerShell setup
 
+The solutions in this section are intended for Windows users with a PowerShell terminal. Commands are executed in the
+terminal or saved to a special configuration file, the location of which is set in the `$PROFILE` environment variable.
+
+**Exception**:
+>`$EDITOR` - this variable must be set in each operating system.
+
 ## PROFILE
 
 `$PROFILE`: A PowerShell system variable that stores the path to the user's profile file. This is a script that is
@@ -94,3 +100,64 @@ For frequently executed commands, you can define shortcuts, so-called aliases, w
 Set-Alias mc micro
 ```
 - this allows you to launch the micro editor by typing 2 characters `mc`.
+
+
+## Fuctions
+
+1. Searching for files using fzf:
+
+```
+function fpp {
+    Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact --delimiter "/" --nth -1
+}
+```
+
+
+2. Searching for files using fzf - by file extension:
+```
+function fee {
+    param (
+        [string]$ext = "*"
+    )
+    Get-ChildItem -Path $HOME -Recurse -File -Filter "*.$ext" | ForEach-Object { $_.FullName } | fzf --exact
+}
+```
+
+
+3. Searches for files and automatically opens in a text editor - here in micro:
+```
+function mcc {
+    $file = Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact
+    if ($file) { micro $file }
+}
+```
+
+
+4. Searches for files and automatically opens in a text editor - here in neovim (nvim):
+```
+function nnn {
+    $file = Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact
+    if ($file) { nvim $file }
+}
+```
+
+
+function cdd {
+    # Pobieramy wszystkie katalogi z katalogu domowego, ignorując błędy dostępu
+    $allDirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
+
+    # Dodajemy katalog domowy ($HOME) na końcu listy
+    $allDirs += $HOME
+
+    # Usuwamy duplikaty (na wypadek, gdyby katalog domowy już był w wynikach)
+    $dirList = $allDirs | Sort-Object -Unique
+
+    # Wywołujemy fzf z opcjami:
+    # --exact  -> dokładne dopasowanie
+    # --ignore-case  -> niewrażliwość na wielkość liter
+    $dir = $dirList | fzf --exact --ignore-case
+
+    # Jeśli użytkownik coś wybrał, zmieniamy katalog
+    if ($dir) { Set-Location $dir }
+}
+
