@@ -49,3 +49,25 @@ Scripts created during classes should be organized in the structure shown below.
 </pre>
 
 
+# 📂 C:\python_courses\   - Main Python course folder
+
+│
+├── 📁 **data**           - Data shared between projects
+├── 📁 **imgs**           - Images shared between projects
+├── 📁 **jupyter**        - Includes notebooks and Jupyter environments
+├── 📁 **projects**       - Directory with exercises/projects
+│   ├── 📁 **example_proj**              - Project folder: data format conversion (csv, json, xml)
+│   │   ├── 📄 `pyproject.toml`          - Configuration file for script installation
+│   │   ├── 📄 `requirements.txt`        - File for `pip` manager: list of modules to be installed
+│   │   ├── 📄 `README.md`               - A file with a description of the project and how the script works
+│   │   ├── 📁 **env_example_proj**      - Directory with the installed virtual environment
+│   │   ├── 📁 **example_proj**          - Python package: directory containing Python files
+│   │   │   ├── 📄 `main.py`             - Main script file
+│   │   │   ├── 📁 **src**               - Directory with Python modules
+│   │   │   │   ├── 📄 `parser.py`
+│   │   │   │   ├── 📄 `my_mod1.py`
+│   │   │   │   ├── 📄 `my_mod2.py`
+│   │   │   │   ├── 📄 `my_mod3.py`
+│   │   │   │   ├── 📁 **templates**      - Directory with report template files
+│   │   │   │   │   ├── 📄 `template1.md`
+│   │   │   │   │   ├── 📄 `template2.md`
