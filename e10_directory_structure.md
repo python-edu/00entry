@@ -1,17 +1,19 @@
 ## Directory structure
+During the course, scripts and notebooks will be created, data files, raster images will be downloaded and created, and
+virtual environments will be created. All this data needs to be placed on the disk in some order (some organization of
+files and directories). Below is a diagram showing such a structure, where:
 
-Scripts created during classes should be organized in the structure shown below.
-
-1. Rename the `example_proj` directory with the name from your project.
-
-2. Place the python modules in the `src` directory:
-   - divide the code into modules according to tasks, e.g. separate functions supporting different data formats
-
-3. Place template files for the report in the `templates` directory.
+- `my_account` - is the name of the user's home directory. All data and programs will be placed in this directory.
+- `pyhon_course` - is a directory that will contain all the files related to the python course
+- `jupyter` - will contain everything related to working in the `jupyter-lab` application: notebook files, environments,
+  etc.
+- `projects` - will contain everything related to working in the `ipython` terminal and python scripts. Each
+  subdirectory (eg. `example_proj`) is a separate project with its own file and directory structure.
+- `src` - is the commonly used name of the directory in which `*.py` files are placed
 
 
 ```plaintext
-C:\Users\my_account\python_courses\   - main python course folder
+C:\Users\my_account\python_course\    - main python course folder
 |
 +---\data\                            - data shared between projects
 |
