@@ -35,3 +35,21 @@ function nnn {
 
 
 
+function cdd {
+    # We get all directories from the home directory, ignoring access errors
+    $allDirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
+
+    # We add the home directory ($HOME) at the end of the list
+    $allDirs += $HOME
+
+    # We remove duplicates (in case your home directory is already in the results)
+    $dirList = $allDirs | Sort-Object -Unique
+
+    # We call fzf with options:
+    # --exact  -> exact fit
+    # --ignore-case  -> case insensitive
+    $dir = $dirList | fzf --exact --ignore-case
+
+    # If the user selected something, we change the directory
+    if ($dir) { Set-Location $dir }
+}
