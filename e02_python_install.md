@@ -8,6 +8,7 @@ Preparing your computer for the lab requires installing:
   - special distribution such as Miniconda/Anaconda
 
  2. Install text editor (python syntax support function is helpful). Sample open source editors:
+  - micro [url](https://github.com/zyedidia/micro/tree/master)
   - notepad++ [url](https://notepad-plus-plus.org/)
   - atom [url](https://atom.io/)
   - spyder [url](https://www.spyder-ide.org/)
@@ -23,9 +24,3 @@ Preparing your computer for the lab requires installing:
   - location: user's default folder
   - check the box: `Add python.exe to PATH` (applies to the current user's variable)
 
-
-# Python setup
-
->- run `Windows PowerShell` console
->- execute: `echo $PROFILE`
->- python -m site --user-base

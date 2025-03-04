@@ -19,6 +19,12 @@ Scripts created during classes should be organized in the structure shown below.
 <pre>
 <span class="green">C:\python_courses\</span>                    - main python course folder
 |
++---<span class="green">\data\</span>                            - data shared between projects
+|
++---<span class="green">\imgs\</span>                            - images shared between projects
+|
++---<span class="green">\jupyter\</span>                         - includes notebooks and jupyter environments
+|
 +---<span class="green">\projects\</span>                        - directory with exercises/projects
     |   
     +---<span class="green">\example_proj\</span>              - project folder: data format conversion (csv, json, xml)
