@@ -48,7 +48,7 @@ Scripts created during classes should be organized in the structure shown below.
                        template2.md
 </pre>
 
-
+```
 # 📂 C:\python_courses\   - Main Python course folder
 
 │
@@ -71,3 +71,4 @@ Scripts created during classes should be organized in the structure shown below.
 │   │   │   │   ├── 📁 **templates**      - Directory with report template files
 │   │   │   │   │   ├── 📄 `template1.md`
 │   │   │   │   │   ├── 📄 `template2.md`
+```
