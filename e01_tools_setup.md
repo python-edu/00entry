@@ -9,6 +9,7 @@
    - [Aliases](#aliases)
    - [EDITOR variable](#editor-variable)
    - [PROFILE](#profile)
+ - [Web browser](#web-browser)
 
 
  
@@ -189,3 +190,13 @@ function cdd {
     if ($dir) { Set-Location $dir }
 }
 ```
+
+
+# Web browser
+
+To view rendered `markdown` files, you may find useful browser extensions:
+
+  1. Google Chrome: Markdown Viewer
+  2. Mozilla Firefox: Markdown Viewer
+  3. Microsoft Edge: Markdown Preview
+  4. Safari: QLMarkdown
