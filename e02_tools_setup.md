@@ -5,6 +5,12 @@
  - [Micro instalation](#micro-instalation)
  - [fzf instalation](#fzf-instalation)
  - [PowerShell setup](#powershell-setup)
+   - [Fnuctions](#functions)
+   - [Aliases](#aliases)
+   - [EDITOR variable](#editor-variable)
+   - [PROFILE](#profile)
+
+
  
 
 # General
@@ -40,6 +46,19 @@ scoop install micro
 ```
 
 If you really don't want to learn micro you can use any other text editor e.g. [Nnotepad++](https://notepad-plus-plus.org/).
+
+
+## Micro Help
+
+1. Link to [Default Keys](https://github.com/zyedidia/micro/blob/master/runtime/help/defaultkeys.md)
+2. In the opened editor, enter:
+  - `<ctr> + e`: open a command prompt for running commands
+  - `Tab`: In command prompt, it will autocomplete if possible.
+  - In command prompt: `help defa + Tab --> help defaultkeys` - will display help on defined keyboard shortcuts
+3. Basic shortcuts:
+  - `<ctr> + q`: close current file (quits micro if this is the last file open)
+  - `<ctr> + o`: open a file (prompts for filename)
+  - `<ctr> + s`: save current file.
 
 
 
@@ -102,7 +121,7 @@ Set-Alias mc micro
 - this allows you to launch the micro editor by typing 2 characters `mc`.
 
 
-## Fuctions
+## Fnuctions
 
 1. Searching for files using fzf:
 
@@ -141,23 +160,24 @@ function nnn {
 }
 ```
 
-
+5. Searches for directories in the user's home folder and sets the selected directory as the current one (goes to it):
+```
 function cdd {
-    # Pobieramy wszystkie katalogi z katalogu domowego, ignorując błędy dostępu
+    # We get all directories from the home directory, ignoring access errors
     $allDirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
 
-    # Dodajemy katalog domowy ($HOME) na końcu listy
+    # We add the home directory ($HOME) at the end of the list
     $allDirs += $HOME
 
-    # Usuwamy duplikaty (na wypadek, gdyby katalog domowy już był w wynikach)
+    # We remove duplicates (in case your home directory is already in the results)
     $dirList = $allDirs | Sort-Object -Unique
 
-    # Wywołujemy fzf z opcjami:
-    # --exact  -> dokładne dopasowanie
-    # --ignore-case  -> niewrażliwość na wielkość liter
+    # We call fzf with options:
+    # --exact  -> exact fit
+    # --ignore-case  -> case insensitive
     $dir = $dirList | fzf --exact --ignore-case
 
-    # Jeśli użytkownik coś wybrał, zmieniamy katalog
+    # If the user selected something, we change the directory
     if ($dir) { Set-Location $dir }
 }
-
+```
