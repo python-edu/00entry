@@ -1,6 +1,6 @@
 # ================== CONFIGURATION ==================
-# New user name (change as needed)
-$user = "test3"
+# New user name
+$user = "test1"
 
 # User group (Users or Administrators)
 $group = "Users"
@@ -33,13 +33,17 @@ if (Get-LocalUser -Name $user -ErrorAction SilentlyContinue) {
 # ================== SKIPPING FIRST LOGIN SETUP ==================
 Write-Host "Skipping first login setup..."
 
-# Automatically accept privacy settings and disable first logon animation
+# Disable Windows first-time setup screen and all privacy questions
 reg load HKU\Default C:\Users\Default\NTUSER.DAT
 reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\OOBE" /v DisablePrivacyExperience /t REG_DWORD /d 1 /f
 reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableFirstLogonAnimation /t REG_DWORD /d 0 /f
+reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\Privacy" /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f
+reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\Privacy" /v LetAppsAccessLocation /t REG_DWORD /d 0 /f
+reg add "HKU\Default\Software\Microsoft\InputPersonalization" /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
+reg add "HKU\Default\Software\Microsoft\InputPersonalization" /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
 reg unload HKU\Default
 
-Write-Host "Windows first-time setup screen skipped."
+Write-Host "Windows first-time setup screen and privacy questions skipped."
 
 # ================== SYSTEM SETTINGS ==================
 Write-Host "Configuring system settings..."
@@ -58,7 +62,13 @@ reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Themes\Pe
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f
 Write-Host "Dark theme activated."
 
-# 4️⃣ Configure Windows Terminal with PowerShell, dark theme, and tabs
+# 4️⃣ Set DARK background image
+Write-Host "Setting dark wallpaper..."
+$wallpaperPath = "C:\Windows\Web\Wallpaper\Windows\img0.jpg"
+reg add "HKEY_USERS\.DEFAULT\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d $wallpaperPath /f
+Write-Host "Dark wallpaper applied."
+
+# 5️⃣ Configure Windows Terminal with PowerShell, dark theme, and tabs
 Write-Host "Configuring Windows Terminal..."
 $terminalSettingsPath = "C:\Users\Default\AppData\Local\Microsoft\Windows Terminal\settings.json"
 if (-Not (Test-Path $terminalSettingsPath)) {
@@ -80,6 +90,11 @@ $terminalConfig = @"
 "@
 $terminalConfig | Set-Content -Path $terminalSettingsPath -Encoding UTF8
 Write-Host "Windows Terminal configured with PowerShell, dark theme, and tab support."
+
+# 6️⃣ Enable PowerShell Execution Policy for local scripts
+Write-Host "Setting PowerShell Execution Policy..."
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
+Write-Host "PowerShell Execution Policy set to allow local scripts."
 
 # ================== COMPLETION ==================
 Write-Host "Configuration completed! You can now log into the account: $user without a password, with dark theme and developer mode enabled."
