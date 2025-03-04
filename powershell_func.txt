@@ -1,0 +1,37 @@
+
+function fpp {
+    Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact --delimiter "/" --nth -1
+}
+
+
+
+function fee {
+    param (
+        [string]$ext = "*"
+    )
+    Get-ChildItem -Path $HOME -Recurse -File -Filter "*.$ext" -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
+}
+
+
+function mcc {
+    $file = Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
+    if ($file) { micro $file }
+}
+
+
+
+function nnn {
+    $file = Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
+    if ($file) { nvim $file }
+}
+
+
+

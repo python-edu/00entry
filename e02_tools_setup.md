@@ -127,7 +127,9 @@ Set-Alias mc micro
 
 ```
 function fpp {
-    Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact --delimiter "/" --nth -1
+    Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact --delimiter "/" --nth -1
 }
 ```
 
@@ -138,7 +140,9 @@ function fee {
     param (
         [string]$ext = "*"
     )
-    Get-ChildItem -Path $HOME -Recurse -File -Filter "*.$ext" | ForEach-Object { $_.FullName } | fzf --exact
+    Get-ChildItem -Path $HOME -Recurse -File -Filter "*.$ext" -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
 }
 ```
 
@@ -146,7 +150,9 @@ function fee {
 3. Searches for files and automatically opens in a text editor - here in micro:
 ```
 function mcc {
-    $file = Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact
+    $file = Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
     if ($file) { micro $file }
 }
 ```
@@ -155,7 +161,9 @@ function mcc {
 4. Searches for files and automatically opens in a text editor - here in neovim (nvim):
 ```
 function nnn {
-    $file = Get-ChildItem -Path $HOME -Recurse -File | ForEach-Object { $_.FullName } | fzf --exact
+    $file = Get-ChildItem -Path $HOME -Recurse -File -Force -ErrorAction SilentlyContinue | 
+        ForEach-Object { $_.FullName } | 
+        fzf --exact
     if ($file) { nvim $file }
 }
 ```
