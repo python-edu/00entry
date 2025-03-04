@@ -1,51 +1,86 @@
-# ================== KONFIGURACJA ==================
-# Nazwa nowego użytkownika (zmień według potrzeb)
-$user = "test1"
+# ================== CONFIGURATION ==================
+# New user name (change as needed)
+$user = "test3"
 
-# Grupa użytkownika (Users lub Administrators)
+# User group (Users or Administrators)
 $group = "Users"
 
-# ================== TWORZENIE KONTA ==================
-Write-Host "Tworzenie nowego użytkownika: $user"
+# ================== DISABLING PASSWORD REQUIREMENT ==================
+Write-Host "Disabling Windows password requirement..."
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" /v LimitBlankPasswordUse /t REG_DWORD /d 0 /f
+Write-Host "Windows will NOT require a password for local accounts."
 
-# Sprawdzenie, czy użytkownik już istnieje
+# ================== CREATING THE USER ==================
+Write-Host "Creating new user: $user"
+
+# Check if the user already exists
 if (Get-LocalUser -Name $user -ErrorAction SilentlyContinue) {
-    Write-Host "Użytkownik $user już istnieje!"
+    Write-Host "User $user already exists!"
 } else {
-    # Tworzenie konta bez hasła
-    New-LocalUser -Name $user -NoPassword -Description "Konto deweloperskie"
+    # Create a local user account WITHOUT a password
+    New-LocalUser -Name $user -NoPassword -Description "Developer account"
 
-    # Ustawienie, aby konto NIE wymagało hasła
+    # Disable password requirement
     wmic useraccount where name="$user" set PasswordRequired=False
     wmic useraccount where name="$user" set PasswordExpires=False
 
-    Write-Host "Użytkownik $user został utworzony BEZ wymogu hasła."
-
-    # Dodanie użytkownika do grupy
+    # Add the user to the specified group
     Add-LocalGroupMember -Group $group -Member $user
-    Write-Host "Użytkownik dodany do grupy: $group"
+
+    Write-Host "User $user created WITHOUT password requirement and added to group: $group"
 }
 
-# ================== WYŁĄCZENIE WYMOGU LOGOWANIA HASŁEM ==================
-Write-Host "Wyłączanie wymogu podawania hasła przy logowaniu..."
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v dontdisplaylastusername /t REG_DWORD /d 0 /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableAutomaticRestartSignOn /t REG_DWORD /d 1 /f
+# ================== SKIPPING FIRST LOGIN SETUP ==================
+Write-Host "Skipping first login setup..."
 
-# Wyłączenie wymogu podania hasła w systemie Windows
-cmd /c "control userpasswords2"
-cmd /c "netplwiz"
+# Automatically accept privacy settings and disable first logon animation
+reg load HKU\Default C:\Users\Default\NTUSER.DAT
+reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\OOBE" /v DisablePrivacyExperience /t REG_DWORD /d 1 /f
+reg add "HKU\Default\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableFirstLogonAnimation /t REG_DWORD /d 0 /f
+reg unload HKU\Default
 
-Write-Host "System NIE będzie wymagał hasła przy logowaniu!"
+Write-Host "Windows first-time setup screen skipped."
 
-# ================== WŁĄCZENIE TRYBU DEWELOPERA ==================
-Write-Host "Aktywowanie trybu dewelopera..."
+# ================== SYSTEM SETTINGS ==================
+Write-Host "Configuring system settings..."
+
+# 1️⃣ Enable Developer Mode
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /v AllowDevelopmentWithoutDevLicense /t REG_DWORD /d 1 /f
-Write-Host "Tryb dewelopera włączony"
+Write-Host "Developer Mode enabled."
 
-# ================== USTAWIENIA SYSTEMOWE ==================
-Write-Host "Włączanie widoczności rozszerzeń plików..."
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideFileExt /t REG_DWORD /d 0 /f
-Write-Host "Rozszerzenia plików są teraz widoczne"
+# 2️⃣ Enable file extensions visibility
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideFileExt /t REG_DWORD /d 0 /f
+Write-Host "File extensions are now visible."
 
-# ================== ZAKOŃCZENIE ==================
-Write-Host "Konfiguracja zakończona! Możesz teraz zalogować się na konto: $user bez hasła."
+# 3️⃣ Set DARK theme for Windows and applications
+Write-Host "Setting Windows dark theme..."
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f
+Write-Host "Dark theme activated."
+
+# 4️⃣ Configure Windows Terminal with PowerShell, dark theme, and tabs
+Write-Host "Configuring Windows Terminal..."
+$terminalSettingsPath = "C:\Users\Default\AppData\Local\Microsoft\Windows Terminal\settings.json"
+if (-Not (Test-Path $terminalSettingsPath)) {
+    New-Item -Path $terminalSettingsPath -ItemType File -Force
+}
+$terminalConfig = @"
+{
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "profiles": {
+        "defaults": {
+            "fontFace": "Cascadia Code",
+            "tabTitle": "PowerShell",
+            "useAcrylic": true,
+            "opacity": 85,
+            "colorScheme": "Campbell"
+        }
+    }
+}
+"@
+$terminalConfig | Set-Content -Path $terminalSettingsPath -Encoding UTF8
+Write-Host "Windows Terminal configured with PowerShell, dark theme, and tab support."
+
+# ================== COMPLETION ==================
+Write-Host "Configuration completed! You can now log into the account: $user without a password, with dark theme and developer mode enabled."
+
