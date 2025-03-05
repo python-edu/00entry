@@ -1,7 +1,10 @@
-# Użytkownik może zdefiniować własny edytor, jeśli nie poda - domyślnie micro
+# User can define his own editor, if not specified - default is micro
+EDITOR_CMD = nvim
+
 $global:EDITOR_CMD = if ($env:EDITOR) { $env:EDITOR } else { "micro" }
 
-# Funkcja fpp - wyszukuje pliki po nazwie
+
+# fpp function - searches for files by name
 function fpp {
     $file = Get-ChildItem -Path $HOME -Recurse -File -Force |
         ForEach-Object { $_.FullName } |
@@ -12,7 +15,8 @@ function fpp {
     }
 }
 
-# Funkcja fee - wyszukuje pliki po rozszerzeniu
+
+# fee function - searches for files by extension
 function fee {
     $ext = Read-Host "Podaj rozszerzenie pliku (np. txt, py, log)"
     $file = Get-ChildItem -Path $HOME -Recurse -File -Force -Filter "*.$ext" |
@@ -24,7 +28,8 @@ function fee {
     }
 }
 
-# Funkcja cdd - wyszukuje katalogi i przenosi do wybranego, zawsze pokazuje katalog domowy na końcu
+
+# cdd function - searches directories and moves to the selected one
 function cdd {
     $dirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         ForEach-Object { $_.FullName }
@@ -38,10 +43,12 @@ function cdd {
     }
 }
 
-# Funkcja mc - alias dla wybranego edytora
+
+# mc - alias for selected editor
 Set-Alias mc $global:EDITOR_CMD
 
-# Funkcja mcc - wyszukuje pliki i otwiera wybrany w edytorze
+
+# mcc function - searches for files and opens the selected one in the editor
 function mcc {
     $file = Get-ChildItem -Path $HOME -Recurse -File -Force |
         ForEach-Object { $_.FullName } |
@@ -52,7 +59,8 @@ function mcc {
     }
 }
 
-# Funkcja fdd - wyszukuje katalogi i wyświetla ich zawartość (`dir`), zawsze pokazuje katalog domowy na końcu
+
+# fdd function - searches directories and displays their contents (`dir`),
 function fdd {
     $dirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         ForEach-Object { $_.FullName }
