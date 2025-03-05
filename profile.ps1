@@ -1,5 +1,5 @@
 # User can define his own editor, if not specified - default is micro
-EDITOR_CMD = nvim
+$env:EDITOR = "nvim"
 
 $global:EDITOR_CMD = if ($env:EDITOR) { $env:EDITOR } else { "micro" }
 
