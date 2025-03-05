@@ -1,33 +1,26 @@
-# Set the default editor (User can change it)
-$global:EDITOR_CMD = "micro"  # Change to your preferred editor (e.g., "notepad", "vim", "code")
+# Ustawienie domyślnego edytora (można zmienić na dowolny inny, np. "notepad", "vim", "code")
+$global:EDITOR_CMD = "micro"
 
-# Function to prompt user for a search pattern
-function Get-Pattern {
-    param ([string]$message)
-    Write-Host "$message" -ForegroundColor Cyan -NoNewline
-    return Read-Host
-}
-
-# Function nvv - Search and open files with the preferred editor
+# Funkcja nvv - wyszukiwanie plików i otwieranie w wybranym edytorze
 function nvv {
-    $pattern = Get-Pattern "📂 Enter search pattern for files (regex supported): "
+    $pattern = Read-Host "Wpisz wzorzec wyszukiwania dla plików (obsługuje regex)"
     $file = Get-ChildItem -Path $HOME -Recurse -File -Force |
         Where-Object { $_.Name -match $pattern } |
         ForEach-Object { $_.FullName } |
-        fzf --exact --prompt "📂 Select a file: "
+        fzf --exact --prompt "Wybierz plik: "
 
     if ($file) {
         & $global:EDITOR_CMD $file
     }
 }
 
-# Function cdd - Search and navigate to a directory
+# Funkcja cdd - wyszukiwanie katalogów i przechodzenie do wybranego katalogu
 function cdd {
-    $pattern = Get-Pattern "📁 Enter search pattern for directories (regex supported): "
+    $pattern = Read-Host "Wpisz wzorzec wyszukiwania dla katalogów (obsługuje regex)"
     $dir = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         Where-Object { $_.Name -match $pattern } |
         ForEach-Object { $_.FullName } |
-        fzf --exact --prompt "📁 Select a directory: "
+        fzf --exact --prompt "Wybierz katalog: "
 
     if ($dir) {
         Set-Location $dir
@@ -35,21 +28,21 @@ function cdd {
     }
 }
 
-# Function fdd - Search and display a tree view of the selected directory (2 levels)
+# Funkcja fdd - wyszukiwanie katalogów i wyświetlenie ich drzewa (2 poziomy zagnieżdżenia)
 function fdd {
-    $pattern = Get-Pattern "📁 Enter search pattern for directories (regex supported): "
+    $pattern = Read-Host "Wpisz wzorzec wyszukiwania dla katalogów (obsługuje regex)"
     $dir = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         Where-Object { $_.Name -match $pattern } |
         ForEach-Object { $_.FullName } |
-        fzf --exact --prompt "📁 Select a directory: "
+        fzf --exact --prompt "Wybierz katalog: "
 
     if ($dir) {
-        Write-Host "📂 Selected directory tree: $dir" -ForegroundColor Yellow
+        Write-Host "Wybrane drzewo katalogu: $dir" -ForegroundColor Yellow
         tree /F /A "$dir" | Out-Host
     }
 }
 
-# Export functions for usage in the current session
+# Eksport funkcji, aby działały w bieżącej sesji
 # Set-Alias nvv nvv
 # Set-Alias cdd cdd
 # Set-Alias fdd fdd
