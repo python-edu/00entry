@@ -24,11 +24,11 @@ function fee {
     }
 }
 
-# Funkcja cdd - wyszukuje katalogi i przenosi do wybranego, zawsze pokazuje katalog domowy
+# Funkcja cdd - wyszukuje katalogi i przenosi do wybranego, zawsze pokazuje katalog domowy na końcu
 function cdd {
     $dirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         ForEach-Object { $_.FullName }
-    $dirs += $HOME  # Dodanie katalogu domowego na końcu listy
+    $dirs = $dirs + $HOME  # Katalog domowy zawsze na końcu listy
 
     $dir = $dirs | fzf --exact --prompt "Wybierz katalog: "
 
@@ -52,11 +52,11 @@ function mcc {
     }
 }
 
-# Funkcja fdd - wyszukuje katalogi i wyświetla ich zawartość (`dir`)
+# Funkcja fdd - wyszukuje katalogi i wyświetla ich zawartość (`dir`), zawsze pokazuje katalog domowy na końcu
 function fdd {
     $dirs = Get-ChildItem -Path $HOME -Recurse -Directory -Force |
         ForEach-Object { $_.FullName }
-    $dirs += $HOME  # Dodanie katalogu domowego na końcu listy
+    $dirs = $dirs + $HOME  # Katalog domowy zawsze na końcu listy
 
     $dir = $dirs | fzf --exact --prompt "Wybierz katalog: "
 
@@ -66,10 +66,4 @@ function fdd {
     }
 }
 
-# Eksport funkcji, aby działały w bieżącej sesji
-# Set-Alias fpp fpp
-# Set-Alias fee fee
-# Set-Alias cdd cdd
-# Set-Alias mcc mcc
-# Set-Alias fdd fdd
 
