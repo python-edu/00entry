@@ -31,6 +31,7 @@ cdd() {
               --info=inline --reverse)
     
     if [[ -n "$dir" ]]; then
+        clear
         cd "$dir"
         pwd
     fi
@@ -52,7 +53,6 @@ fdd() {
 }
 
 # Export functions to work in terminal
-export -f nvv
+export -f mcc
 export -f cdd
-export -f fdd
 
