@@ -27,8 +27,8 @@
 
 In the `ipython` console you can run the so-called magic commands. These commands are preceded by the `%` character, e.g .:
 
-- `% ls` shows the contents of the current directory
-- `% cd` allows you to change the current directory
+- `%ls` shows the contents of the current directory
+- `%cd` allows you to change the current directory
 
 List and description of available commands: [here](https://ipython.readthedocs.io/en/stable/interactive/magics.html#line-magics) 
 
