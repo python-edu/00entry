@@ -1,4 +1,4 @@
-## ⚠️ **Warning:** This document **has not been updated for 2 years** and may contain outdated information.⚠️ 
+## ⚠️ **Warning:** This document may contain outdated information (has not been updated since 2022).⚠️ 
 
 
 ---
