@@ -1,6 +1,6 @@
 # Ipython
 
- >- `ipython`: interactive Python interpreter console, see [here](https://nowymoj.t-mobile.pl/#dla-ciebie)
+ >- `ipython`: interactive Python interpreter console, see [here](https://ipython.readthedocs.io/en/stable/index.html)
  >- ipython tutorial: [here](https://ipython.readthedocs.io/en/stable/interactive/index.html)
 
 
