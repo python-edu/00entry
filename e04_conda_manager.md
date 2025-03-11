@@ -1,3 +1,7 @@
+:::warning
+⚠️ **Warning:** This document **has not been updated for 2 years** and may contain outdated information.
+:::
+
 # Conda environments and packages management
 
 ### Management of environments
