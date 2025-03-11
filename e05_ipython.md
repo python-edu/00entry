@@ -1,14 +1,15 @@
 # Ipython
 
- >- `ipython`: interactive Python interpreter console, see [here](https://ipython.org/ipython-doc/stable/overview.html)
+ >- `ipython`: interactive Python interpreter console, see [here](https://nowymoj.t-mobile.pl/#dla-ciebie)
  >- ipython tutorial: [here](https://ipython.readthedocs.io/en/stable/interactive/index.html)
 
 
 ### Start `ipython`:
 
- > in the system terminal or in the Anaconda Prompt (Windows) write `ipython`.
- ![Lunch ipython](./img/ipython.png)
-
+ > in the system terminal or in the Anaconda Prompt (Windows) or `PowerShell` write `ipython`:
+```bash
+ipython
+```
 
 ### Keyboard shortcuts:
 
