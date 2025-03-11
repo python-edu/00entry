@@ -28,6 +28,8 @@ The basic commands for managing virtual environments are listed below.
 
 
 ### Conda commands
+####⚠️ **Warning:** This document **has not been updated for 2 years** and may contain outdated information.⚠️ 
+
 1. Creating environments:
  - `conda create -n environment_name`
  - `conda activate environment_name`
