@@ -107,9 +107,12 @@ python -m ipykernel install --user --name=edc --display-name "python_edc"
 
 
 5. List kernel
-Using 'jojo' you can list the kernels available for jupyter:
+Using `jupyter-kernelspec` you can list the kernels available for jupyter:
 
  ![jupyter edc5](imgs/jup_edc5.jpg)
+
+
+# Using jupyter
 
 ## Start `Jupyter`:
 
@@ -117,7 +120,9 @@ Using 'jojo' you can list the kernels available for jupyter:
  >- write `jupyter lab` - your default web browser window should open and jupyter lab should be launched
  >- write `jupyter lab --no-browser` - jupyter server will be started but, the www browser must be launched by the user
     and the http address must be pasted into it
- ![Lunch jupyter](./img/jupyter.png)
+
+ ![Lunch jupyter1](./img/jup_run1.png)
+ ![Lunch jupyter2](./img/jup_run2.png)
 
  >- the command should start your default web browser and display the `jupyter notebook` start page
  >- if the start page is not displayed, copy the link displayed in the console, open the browser and paste the link
