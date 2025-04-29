@@ -103,6 +103,13 @@ python -m ipykernel install --user --name=edc --display-name "python_edc"
 
 ```
 
+ ![jupyter edc4](imgs/jup_edc4.jpg)
+
+
+5. List kernel
+Using 'jojo' you can list the kernels available for jupyter:
+
+ ![jupyter edc5](imgs/jup_edc4.jpg)
 
 ## Start `Jupyter`:
 
