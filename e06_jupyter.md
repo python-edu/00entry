@@ -33,9 +33,10 @@ C:\Users\my_account\python_course\    - main python course folder
 
 ## Creating directories
 In the python course directory, create the following directories (according to the structure shown: 
->- `mkdir jupyter`
+1. `mkdir jupyter`
   ![mkdir jupyter](imgs/jup_mkdir1.jpg)
->- `cd jupyter` -> `mkdir envs` and `mkdir notebooks`
+
+2. `cd jupyter` -> `mkdir envs` and `mkdir notebooks`
   ![mkdir jupyter](imgs/jup_mkdir2.jpg)
 
 
