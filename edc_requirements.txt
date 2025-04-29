@@ -1,0 +1,10 @@
+ipykernel
+numpy
+scipy
+pandas
+statsmodels
+matplotlib
+ipywidgets
+scikit-learn
+tabulate
+tqdm
