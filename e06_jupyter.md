@@ -84,12 +84,13 @@ An environment for everyday work, with popular data analysis modules installed -
 
 1. Create `edc` environment:
 
- ![edc1](imgs/jup_edc1.jpg]
+ ![jupyter edc1](imgs/jup_edc1.jpg)
 
 2. `edc_requirements.txt`
 > Copy the file edc_requirements.txt to the directory `../jupyter/envs/`
 
- ![edc1](imgs/jup_edc1.jpg]
+ ![jupyter edc2](imgs/jup_edc2.jpg)
+
 ```bash
 # copy the file edc_requirements.txt to the directory `../jupyter/envs/`
 cp ...
