@@ -91,18 +91,13 @@ An environment for everyday work, with popular data analysis modules installed -
 
  ![jupyter edc2](imgs/jup_edc2.jpg)
 
-```bash
-# copy the file edc_requirements.txt to the directory `../jupyter/envs/`
-cp ...
 
-python -m venv edc
+3. Install modules from `edc_requirements.txt` file:
 
-edc/Scripts/active
+ ![jupyter edc3](imgs/jup_edc3.jpg)
+ ![jupyter edc31](imgs/jup_edc31.jpg)
 
-python -m pip install -r edc_requirements.txt
-```
-
-2. Install the environment in jupyter:
+4. Install the environment in jupyter:
 ```bash
 python -m ipykernel install --user --name=edc --display-name "python_edc"
 
