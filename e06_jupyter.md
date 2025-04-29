@@ -145,5 +145,19 @@ Magic commands run in `jupyter notebook` as in the` ipython` console. Two types 
  - command line commands, preceded by a single `%` character e.g. `%ls` - see [here](https://ipython.readthedocs.io/en/stable/interactive/magics.html#line-magics). 
  - commands to be executed in `jupyter notebook` cells, preceded by a double `% ` sign, e.g. ` %%html ` - see [here](https://ipython.readthedocs.io/en/stable/interactive/magics.html#cell-magics)
 
+# Function
 
+```bash
+function jupyterlab {
+    $basePath = & fd --type d jupyter_base C:\ 2>$null | Select-Object -First 1
 
+    if (-not $basePath) {
+        Write-Host "Nie znaleziono katalogu 'jupyter_base'" -ForegroundColor Red
+        return
+    }
+    
+    $basePath = $basePath.TrimEnd('\')
+    & "$basePath\Scripts\Activate.ps1"
+    jupyter-lab.exe
+}
+```
