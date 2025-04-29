@@ -34,9 +34,11 @@ C:\Users\my_account\python_course\    - main python course folder
 ## Creating directories
 In the python course directory, create the following directories (according to the structure shown: 
 1. `mkdir jupyter`
+
   ![mkdir jupyter](imgs/jup_mkdir1.jpg)
 
 2. `cd jupyter` -> `mkdir envs` and `mkdir notebooks`
+
   ![mkdir jupyter](imgs/jup_mkdir2.jpg)
 
 
@@ -52,6 +54,7 @@ python -m venv jupyter_base
 ```
 ![jupyter base](imgs/jup_base.jpg)
 
+
 ## Jupyter installation
 
 ```bash
@@ -61,6 +64,10 @@ jupyter_base/Scripts/activate  # activate environment
 
 python -m pip install -U pip jupyter  # jupyter installation
 ```
+
+![jupyter install1](imgs/jup_install1.jpg)
+![jupyter install2](imgs/jup_install2.jpg)
+
 
 # Jupyter and virtual environments
 
