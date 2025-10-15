@@ -13,6 +13,8 @@ Preparing your computer for the lab requires installing:
   - atom [url](https://atom.io/)
   - spyder [url](https://www.spyder-ide.org/)
 
+ 3. Install `pipx` [url](https://pipx.pypa.io/stable/)
+
 ---
 
 
@@ -29,4 +31,37 @@ Preparing your computer for the lab requires installing:
    - run PowerShell
    - enter: `python -V / --version` to check if python is working
    - enter: `python -m pip install -U pip` to update pip manager
+
+---
+
+# pipx
+
+From docs:
+> pipx is a tool to help you install and run end-user applications written in Python.
+
+Some Python tools (e.g., linters/formatters for *.py files) are convenient to install once per user, not in every
+virtual environment. Use pipx: it installs each tool into its own isolated venv and exposes a global command in
+your user PATH.
+
+1. Windows
+  ```bash
+    winget install pipx.pipx
+    pipx ensurepath    # add %USERPROFILE%\.local\bin to PATH
+    # restart the shell
+  ```
+
+2. Linux (Debian / Ubuntu):
+  ```bash
+    sudo apt install pipx
+    pipx ensurepath    # adds ~/.local/bin to PATH
+    # restart the shell
+  ```
+
+3. macOs:
+
+  ```bash
+    brew install pipx
+    pipx ensurepath    # adds ~/.local/bin to PATH
+    # restart the shell
+  ```
 
