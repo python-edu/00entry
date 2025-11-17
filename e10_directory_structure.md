@@ -23,17 +23,29 @@ C:\Users\my_account\python_course\    - main python course folder
 |
 +---\projects\                        - directory with exercises/projects
     |   
-    +---\example_proj\                - project folder: data format conversion (csv, json, xml)
+    +---\example_proj1\               - main project folder
+    +---\example_proj2\               - main project folder
+    +---\example_proj3\               - main project folder
+```
+
+### Project layouts
+There are two popular project layouts (file and directory structures):
+  - flat-layout:
+
+     ```bash
+        +---\example_proj\            - project folder: data format conversion (csv, json, xml)
         |    pyproject.toml           - configuration file for script installation
         |    requirements.txt         - file for `pip` manager: list of modules to be installed
         |                               in the script's virtual environment
         |    README.md                - a file with a description of the project and how the script works
         |    
-        +----\env_example_proj\       - directory with the installed virtual environment
+        +----\env\                    - directory with the installed virtual environment
         +----\example_proj\           - python package: directory containing python files
+             |    __init__.py         - marks a directory as a Python package so its modules can be imported 
              |    main.py             - main script file
              |    
              +----\src\               - directory with python modules
+                  |    __init__.py
                   |    parser.py
                   |    my_mod1.py
                   |    my_mod2.py
@@ -42,4 +54,30 @@ C:\Users\my_account\python_course\    - main python course folder
                   \templates\         - directory with report template files
                        template1.md
                        template2.md
-```
+     ```
+
+  - src-layout:
+    ```bash
+       +---\example_proj\                 - project folder: data format conversion (csv, json, xml)
+       |    pyproject.toml                - configuration file for script installation
+       |    requirements.txt              - file for `pip` manager: list of modules to be installed
+       |                                    in the script's virtual environment
+       |    README.md                     - a file with a description of the project and how the script works
+       |    
+       +----\env\                         - directory with the installed virtual environment
+       +----\src\
+            +----\example_proj\           - python package: directory containing python files
+                 |    __init__.py         - marks a directory as a Python package so its modules can be imported
+                 |    main.py             - main script file
+                 |    
+                 +----\subpackage         - directory with python modules
+                      |    __init__.py
+                      |    parser.py
+                      |    my_mod1.py
+                      |    my_mod2.py
+                      |    my_mod3.py
+                      |
+                      \templates\         - directory with report template files
+                           template1.md
+                           template2.md
+    ```
