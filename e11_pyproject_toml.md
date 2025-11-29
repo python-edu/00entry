@@ -1,6 +1,6 @@
 # TOML
 
-> Tom's Obvious Minimal Language - ![url](https://toml.io/en/)
+> Tom's Obvious Minimal Language - [url](https://toml.io/en/)
 >  - a config file format for humans.
 
 Characteristic features of the file format:
@@ -19,8 +19,8 @@ Characteristic features of the file format:
 # pyproject.toml 
 
 ## Sources
-  - Python ![Packaging Guide](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#writing-pyproject-toml)
-  - Hatch ![configuration](https://hatch.pypa.io/1.13/config/metadata/)
+  - Python [Packaging Guide](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#writing-pyproject-toml)
+  - Hatch [configuration](https://hatch.pypa.io/1.13/config/metadata/)
 
 ## Minimal toml 
 **Toml for `hatchling`**:
