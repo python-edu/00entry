@@ -44,13 +44,17 @@ There are two popular project layouts (file and directory structures):
              |    __init__.py         - marks a directory as a Python package so its modules can be imported 
              |    main.py             - main script file
              |    
-             +----\src\               - directory with python modules
+             +----\subpackage\        - directory with python modules - in the course we usually use one
+                  |                     subpackage and use the name `src`
                   |    __init__.py
                   |    parser.py
                   |    my_mod1.py
                   |    my_mod2.py
                   |    my_mod3.py
                   |
+                  \subpackage2\       - there may be more subpackages
+                  |   __init__.py
+                  \...
                   \templates\         - directory with report template files
                        template1.md
                        template2.md
@@ -65,7 +69,8 @@ There are two popular project layouts (file and directory structures):
        |    README.md                     - a file with a description of the project and how the script works
        |    
        +----\env\                         - directory with the installed virtual environment
-       +----\src\
+       +----\src\                         - `src` - clearly separates the package from the rest of the project and
+            |                                assumes that there is only one main package
             +----\example_proj\           - python package: directory containing python files
                  |    __init__.py         - marks a directory as a Python package so its modules can be imported
                  |    main.py             - main script file
