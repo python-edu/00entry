@@ -145,6 +145,117 @@ Magic commands run in `jupyter notebook` as in the` ipython` console. Two types 
  - command line commands, preceded by a single `%` character e.g. `%ls` - see [here](https://ipython.readthedocs.io/en/stable/interactive/magics.html#line-magics). 
  - commands to be executed in `jupyter notebook` cells, preceded by a double `% ` sign, e.g. ` %%html ` - see [here](https://ipython.readthedocs.io/en/stable/interactive/magics.html#cell-magics)
 
+
+---
+
+
+# JupyterLab Launcher
+
+**Goal**
+
+The goal is to create a command that launches JupyterLab directly from the command line without activating the
+dedicated runtime environment `jupyter_base`.
+
+
+## Windows
+The command is intended to be invoked from a PowerShell console.
+
+1. Open a PowerShell console.
+2. In your home directory, create a new folder named `.bin` (the name starts with a dot — this is a convention).
+    ```bash
+      mkdir ".bin"
+    ```
+
+3. Enter the `.bin` directory and create a new file, for example `jupyterlab.cmd`. Use any text editor, e.g. Micro.
+    ```bash
+      cd .bin
+      micro jupyterlab.cmd
+    ```
+
+   **Note:**  
+   The file name is identical to the name of the command used to launch JupyterLab.
+
+4. Add the following lines to the file:
+    ```bash
+      @echo off
+      "C:\Users\python_eng\python_cource\jupyter_work\jupyter_base\Scripts\python.exe" -m jupyterlab %*
+    ```
+
+    Explanation:
+    - `@echo off` suppresses unnecessary output from the command interpreter.
+    - `%*` forwards all additional command-line arguments to Python.  
+      Example:
+      ```bash
+      jupyterlab --port 9999 --no-browser
+      ```
+    
+    **Important:**
+    - The path must point to your own Jupyter runtime environment.  
+      The path shown above is only an example.
+    - The path must be enclosed in double quotes (`"`).
+    
+    Save and close the file.
+
+5. Add the `.bin` directory to the `PATH` environment variable.
+    ```bash
+      System -> Advanced system settings -> Environment Variables -> User PATH
+    ```
+
+6. Restart PowerShell — the command should now be available.
+
+
+## Linux / macOS
+
+1. Open a terminal.
+2. Check whether the `.local/bin` directory exists. If not, create it.
+    ```bash
+      mkdir -p ~/.local/bin
+    ```
+3. Enter the `.local/bin` directory and create a new file named `jupyterlab`. Open it for editing using any text
+   editor, e.g. Micro.
+   ```bash
+     micro jupyterlab
+   ```
+
+4. Add the following lines:
+    ```bash
+      #!/usr/bin/env bash
+      exec /home/user_name/venvs/jupyter_base/bin/python -m jupyterlab "$@"
+    ```
+
+    Explanation:
+    - `#!/usr/bin/env bash` specifies the interpreter used to execute the script (shebang).
+    - `exec` replaces the current shell process with the Python interpreter.
+    - The path points to the Python interpreter in the Jupyter runtime environment and is only an `example!!` - replace
+      it with your own.
+    - `"$@"` forwards all additional command-line arguments.
+    
+    Example:
+      ```bash
+        jupyterlab --port 9999 --no-browser
+      ```
+
+5. Save the file, close it, and make it executable.
+    ```bash
+      chmod +x jupyterlab
+    ```
+
+6. Verify that `.local/bin` is included in your `$PATH` (add it if necessary).
+    ```bash
+      # for linux:
+      echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+      source ~/.bashrc
+
+      # for macOs
+      echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+      source ~/.zshrc
+    ```
+
+
+
+<!--
+Poprzednia wersja, która wymagała instalacji `fd`!!!
+
 # Function
 
 ```bash
@@ -161,3 +272,4 @@ function jupyterlab {
     jupyter-lab.exe
 }
 ```
+-->
