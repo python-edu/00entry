@@ -1,4 +1,4 @@
-# -*- coding: utf-8-*-
+# -*- coding: utf-8 -*-
 
 """
 First script.
@@ -50,9 +50,9 @@ def parser_function():
 
 
 def main(args):
-    """The code below the condition 'if __main __...' is executed when the
-    module is run as a script. All this code can (optionally) be grouped into
-    a single function, commonly called 'main ()'.
+    """The code below the condition 'if __main __ == "__main__"' is executed
+    when the module is run as a script. All this code can (optionally) be grouped
+    into a single function, commonly called 'main ()'.
     """
     print(f"The 'main ()' function:\n{'---'*10}\n")
     msg1 = "  The variable 'args' is of the type:"
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     args = parser_function()
 
     print(f"\n{'Current folder path (working directory):':<46}{current_dir}")
-    print(f"{'Module folder path (__file__):':<46}{module_dir}\n")
+    print(f"{'Modules directory (src):':<46}{module_dir}\n")
     print(f"{'Value of the variable __name__:':<46}{__name__}\n")
 
     main(args)
